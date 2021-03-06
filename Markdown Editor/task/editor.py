@@ -1,7 +1,11 @@
-print(r"""# The List of Albums
-During their history, a lot of great albums were released.
-These are my favorite:
-1. Abbey Road
-2. Rubber Soul
-3. Revolver
-4. A Hard Day's Night""")
+answer = [
+        "# John Lennon",
+        "or ***John Winston Ono Lennon*** was one of *The Beatles*.",
+        "Here are the songs he wrote I like the most:",
+        "* Imagine",
+        "* Norwegian Wood",
+        "* Come Together",
+        "* In My Life",
+        "* ~~Hey Jude~~ (that was *McCartney*)"
+    ]
+print("\n".join(answer))
