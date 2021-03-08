@@ -32,9 +32,12 @@ def link():
 
 
 def md_list(order):
-    rows = int(input("- Number of rows: "))
-    if rows < 1:
-        return 0
+    while 1:
+        rows = int(input("- Number of rows: "))
+        if rows < 1:
+            print('The number of rows should be greater than zero')
+        else:
+            break
     out = ""
     if order == 0:
         for i in range(1, rows + 1):
@@ -74,14 +77,8 @@ def main():
         elif choice == "line-break":
             markdown += line_break()
         elif choice == "ordered-list":
-            if md_list(0) == 0:
-                print('The number of rows should be greater than zero')
-                continue
             markdown += md_list(0)
         elif choice == "unordered-list":
-            if md_list(1) == 0:
-                print('The number of rows should be greater than zero')
-                continue
             markdown += md_list(1)
         else:
             print("Unknown formatting type or command. Please try again")
