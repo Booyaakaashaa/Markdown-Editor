@@ -50,7 +50,7 @@ def md_list(order):
 
 def main():
     print("$ python markdown-editor.py")
-    # formats = ['plain', 'bold', 'italic', 'link', 'inline-code', 'header', 'ordered-list', 'unordered-list', 'line-break']
+    markdown_file = open('output.md', 'a')
     markdown = ""
     while 1:
         choice = input("- Choose a formatter: ")
@@ -84,6 +84,8 @@ def main():
             print("Unknown formatting type or command. Please try again")
             continue
         print(markdown)
+        markdown_file.write(markdown)
+    markdown_file.close()
 
 
 if __name__ == '__main__':
