@@ -38,10 +38,10 @@ def md_list(order):
     out = ""
     if order == 0:
         for i in range(1, rows + 1):
-            out += f"{i}." + input(f"- Row #" + {i} + ": ") + '\n'
+            out += f"{i}." + input(f"- Row #{i}: ") + '\n'
     else:
         for i in range(1, rows + 1):
-            out += "* " + input(f"- Row #" + {i} + ": ") + "\n"
+            out += "* " + input(f"- Row #{i}: ") + "\n"
     return out
 
 
