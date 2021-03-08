@@ -32,16 +32,17 @@ def link():
 
 
 def md_list(order):
-    rows = input("- Number of rows: ")
+    rows = int(input("- Number of rows: "))
     if rows < 1:
         return 0
     out = ""
     if order == 0:
         for i in range(1, rows + 1):
-            out += i + "." + input("- Row #" + i + ": ")
+            out += f"{i}." + input(f"- Row #" + {i} + ": ") + '\n'
     else:
         for i in range(1, rows + 1):
-            out += "*" + input("- Row #" + i + ": ")
+            out += "* " + input(f"- Row #" + {i} + ": ") + "\n"
+    return out
 
 
 def main():
