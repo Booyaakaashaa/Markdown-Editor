@@ -230,5 +230,8 @@ files:
         Test().run_tests()
   learner_created: false
 feedback_link: https://hyperskill.org/projects/162/stages/842/implement#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Mon, 08 Mar 2021 19:39:32 UTC
 record: -1
