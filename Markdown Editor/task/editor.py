@@ -31,6 +31,19 @@ def link():
     return "[" + input("- Label: ") + "]" + "(" + input("- URL: ") + ")"
 
 
+def md_list(order):
+    rows = input("- Number of rows: ")
+    if rows < 1:
+        return 0
+    out = ""
+    if order == 0:
+        for i in range(1, rows + 1):
+            out += i + "." + input("- Row #" + i + ": ")
+    else:
+        for i in range(1, rows + 1):
+            out += "*" + input("- Row #" + i + ": ")
+
+
 def main():
     print("$ python markdown-editor.py")
     # formats = ['plain', 'bold', 'italic', 'link', 'inline-code', 'header', 'ordered-list', 'unordered-list', 'line-break']
@@ -59,6 +72,16 @@ def main():
             markdown += header()
         elif choice == "line-break":
             markdown += line_break()
+        elif choice == "ordered-list":
+            if md_list(0) == 0:
+                print('The number of rows should be greater than zero')
+                continue
+            markdown += md_list(0)
+        elif choice == "unordered-list":
+            if md_list(1) == 0:
+                print('The number of rows should be greater than zero')
+                continue
+            markdown += md_list(1)
         else:
             print("Unknown formatting type or command. Please try again")
             continue
