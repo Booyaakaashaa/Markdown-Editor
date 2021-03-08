@@ -149,6 +149,72 @@ class Test(StageTest):
 
         return CheckResult.correct()
 
+    @dynamic_test
+    def test5(self):
+        pr = TestedProgram()
+        pr.start()
+
+        output = pr.execute('ordered-list').strip().lower()
+        if 'number' not in output:
+            return CheckResult.wrong('Ordered list formatter should prompt a user for the number of rows, i.e "- Number of rows: > "')
+
+        output = list(map(lambda item: item.lower(), pr.execute('0').split('\n')))
+        if len(output) < 2 or 'number' not in output[-1].strip():
+            return CheckResult.wrong('(Un)ordered list formatter should inform a user that the number of rows should be greater than zero if the input was invalid, and prompt the user for this input again, i.e "- Number of rows: > "')
+
+        pr.execute('4')
+        pr.execute('first')
+        pr.execute('second')
+        pr.execute('third')
+        output = list(map(lambda item: item.lower(), pr.execute('fourth').split('\n')))
+        if len(output) != 6:
+            return CheckResult.wrong('Ordered list formatter should switch to a new line automatically')
+
+        if output[0] != '1. first' or output[1] != '2. second' or output[2] != '3. third' or output[3] != '4. fourth':
+            return CheckResult.wrong('Ordered list formatter should enumerate its rows in the following manner: "1. ", "2.", and so on, depending on the given number of rows.')
+
+        if 'formatter' not in output[5].strip():
+            return CheckResult.wrong('A user should be prompted for input again, i.e  "- Choose a formatter: > "')
+
+        pr.execute('!done')
+        if not pr.is_finished():
+            return CheckResult.wrong('Your program should finish its execution whenever !done is an input')
+
+        return CheckResult.correct()
+
+    @dynamic_test
+    def test6(self):
+        pr = TestedProgram()
+        pr.start()
+
+        output = pr.execute('unordered-list').strip().lower()
+        if 'number' not in output:
+            return CheckResult.wrong('Unordered list formatter should prompt a user for the number of rows, i.e "- Number of rows: > "')
+
+        output = list(map(lambda item: item.lower(), pr.execute('-7').split('\n')))
+        if len(output) < 2 or 'number' not in output[-1].strip():
+            return CheckResult.wrong('(Un)ordered list formatter should inform a user that the number of rows should be greater than zero if the input was invalid, and prompt the user for this input again, i.e "- Number of rows: > "')
+
+        pr.execute('4')
+        pr.execute('first')
+        pr.execute('second')
+        pr.execute('third')
+        output = list(map(lambda item: item.lower(), pr.execute('fourth').split('\n')))
+        if len(output) != 6:
+            return CheckResult.wrong('Unordered list formatter should switch to a new line automatically')
+
+        if output[0] != '* first' or output[1] != '* second' or output[2] != '* third' or output[3] != '* fourth':
+            return CheckResult.wrong('Unordered list formatter should begin each of the rows with a star "*" symbol')
+
+        if 'formatter' not in output[5].strip():
+            return CheckResult.wrong('A user should be prompted for input again, i.e  "- Choose a formatter: > "')
+
+        pr.execute('!done')
+        if not pr.is_finished():
+            return CheckResult.wrong('Your program should finish its execution whenever !done is an input')
+
+        return CheckResult.correct()
+
 
 if __name__ == '__main__':
     Test().run_tests()
